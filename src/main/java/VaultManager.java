@@ -1,14 +1,16 @@
+import java.awt.*;
 import java.io.*;
+import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.simple.JSONObject; //To use JSON
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
+import java.util.Scanner;
 
 public class VaultManager {
-
+    static Scanner input = new Scanner(System.in);
     static class Colors {
         public static final String RESET = "\u001B[0m";
         public static final String RED = "\u001B[31m";
@@ -63,6 +65,31 @@ public class VaultManager {
         System.out.println(Colors.GREEN + "Credentials added for: " + service + Colors.RESET);
     }
 
+    // Update credentials
+    public static void update(String service, String username, String password) throws IOException, ParseException{
+        JSONArray jsonArray = loadJson();
+        boolean inIt = false;
+
+        for (Object o : jsonArray) {
+            JSONObject json = (JSONObject) o;
+            if (((String) json.get("service") + json.get("username")).equals(service + username)) {
+                System.out.print("Current password: ");
+                if (input.nextLine().equals(json.get("password"))) {
+                    json.put("password", password);
+                    saveJson(jsonArray);
+                    inIt = true;
+                    System.out.println(Colors.GREEN+"Password updated"+ Colors.RESET);
+                } else {
+                    System.out.println(Colors.RED + "Wrong credential: password not changed"+Colors.RESET);
+                }
+                break;
+            }
+        }
+        if (!inIt){
+            System.out.println("No user find for this service");
+        }
+
+    }
     // Delete credentials
     public static void delete(String service, String username) throws IOException, ParseException {
         JSONArray jsonArray = loadJson();

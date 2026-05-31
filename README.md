@@ -59,26 +59,12 @@ cd vault
 mvn clean package
 ```
 
-### 3. Run the application
-
-```bash
-java -jar target/Vault-1.0-SNAPSHOT.jar
-```
-
----
-
 ## 🧠 Usage
 
 ### 🔹 Add a credential
 
 ```bash
 password add <service> <username> <password>
-```
-
-Example:
-
-```bash
-password add github johndoe myPassword123
 ```
 
 ---
@@ -89,24 +75,12 @@ password add github johndoe myPassword123
 password get <service> <username>
 ```
 
-Example:
-
-```bash
-password get github johndoe
-```
-
 ---
 
 ### 🔹 Delete credentials
 
 ```bash
 password delete <service> <username>
-```
-
-Example:
-
-```bash
-password delete github johndoe
 ```
 
 ---
@@ -123,12 +97,6 @@ password list
 
 ```bash
 password list <service>
-```
-
-Example:
-
-```bash
-password list github
 ```
 
 ---
@@ -252,14 +220,6 @@ password add github user pass
 
 ---
 
-## 💡 Result
-
-You now have a real cross-platform CLI:
-
-* Windows → `password.bat`
-* Linux → `/usr/local/bin/password`
-
----
 
 ## 📈 Possible Improvements
 

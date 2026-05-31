@@ -111,6 +111,26 @@ public class Main {
 
                 }
             }
+            case("update")->{
+                switch(args.length){
+                    case(1)->{
+                        System.out.println(Colors.RED+"No service, username and password provided"+Colors.RESET);
+                        return;
+                    }
+                    case(2)->{
+                        System.out.println(Colors.RED+"No username and password provided"+Colors.RESET);
+                        return;
+                    }
+                    case(3)->{
+                        System.out.println(Colors.RED+"No password provided"+Colors.RESET);
+                        return;
+                    }
+                }
+                String service = args[1];
+                String username = args[2];
+                String password = args[3];
+                VaultManager.update(service, username, password);
+            }
             case("--help") -> {
                 System.out.println("""
         Password Vault CLI
